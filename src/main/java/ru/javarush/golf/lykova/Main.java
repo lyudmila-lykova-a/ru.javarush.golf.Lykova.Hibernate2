@@ -6,7 +6,6 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.query.Query;
 import ru.javarush.golf.lykova.entities.*;
-import ru.javarush.golf.lykova.entities.converters.RatingConverter;
 
 import java.util.List;
 import java.util.Properties;
@@ -36,8 +35,6 @@ public class Main {
                 .addAnnotatedClass(CityEntity.class)
                 .addAnnotatedClass(CountryEntity.class)
                 .addAnnotatedClass(CustomerEntity.class)
-                .addAnnotatedClass(FilmActorEntity.class)
-                .addAnnotatedClass(FilmCategoryEntity.class)
                 .addAnnotatedClass(FilmEntity.class)
                 .addAnnotatedClass(FilmTextEntity.class)
                 .addAnnotatedClass(InventoryEntity.class)

@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -19,18 +21,25 @@ public class RentalEntity {
     @Column(name = "rental_date", nullable = false)
     private LocalDateTime rentalDate;
 
-    @Column(name = "inventory_id", nullable = false)
-    private Integer inventoryId;
-
-    @Column(name = "customer_id", nullable = false)
-    private Integer customerId;
-
     @Column(name = "return_date")
     private LocalDateTime returnDate;
 
-    @Column(name = "staff_id", nullable = false)
-    private Integer staffId;
-
     @Column(name = "last_update")
     private LocalDateTime lastUpdate;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    public CustomerEntity customerEntity;
+
+    @ManyToOne
+    @JoinColumn(name = "inventory_id")
+    public InventoryEntity inventoryEntity;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "rental_id")
+    private Set<PaymentEntity> paymentEntities = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "staff_id")
+    public StaffEntity staffEntity;
 }

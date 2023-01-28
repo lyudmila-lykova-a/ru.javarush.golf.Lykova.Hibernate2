@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -21,4 +23,12 @@ public class CityEntity {
 
     @Column(name = "last_update", nullable = false)
     private LocalDateTime lastUpdate;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "city_id")
+    private Set<AddressEntity> addressEntities = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "country_id")
+    public CountryEntity countryEntity;
 }

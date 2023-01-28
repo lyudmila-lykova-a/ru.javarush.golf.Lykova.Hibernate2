@@ -26,9 +26,6 @@ public class AddressEntity {
     @Column(name = "district", length = 20, nullable = false)
     private String district;
 
-    @Column(name = "city_id")
-    private Integer cityId;
-
     @Column(name = "postal_code", length = 10)
     private String postalCode;
 
@@ -38,4 +35,16 @@ public class AddressEntity {
     @Column(name = "last_update", nullable = false)
     private LocalDateTime lastUpdate;
 
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    public CityEntity cityEntity;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy="addressEntity")
+    public StoreEntity storeEntity;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy="addressEntity")
+    public CustomerEntity customerEntity;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy="addressEntity")
+    public StaffEntity staffEntity;
 }

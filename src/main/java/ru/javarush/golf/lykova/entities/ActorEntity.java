@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -25,5 +27,11 @@ public class ActorEntity {
 
     @Column(name = "last_update", nullable = false)
     private LocalDateTime lastUpdate;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name="film_actor",
+            joinColumns=  @JoinColumn(name="actor_id", referencedColumnName="actor_id"),
+            inverseJoinColumns= @JoinColumn(name="film_id", referencedColumnName="film_id") )
+    private Set<FilmEntity> filmEntities = new HashSet<>();
 
 }

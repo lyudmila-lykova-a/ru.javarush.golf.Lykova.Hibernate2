@@ -8,11 +8,11 @@ import ru.javarush.golf.lykova.entities.converters.RatingConverter;
 import ru.javarush.golf.lykova.entities.converters.SetConverter;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
 @Setter
-@ToString
 @Entity
 @Table(name = "film", schema = "movie")
 public class FilmEntity {
@@ -30,12 +30,6 @@ public class FilmEntity {
 
     @Column(name = "release_year")
     private Integer releaseYear;
-
-    @Column(name = "language_id", nullable = false)
-    private Integer languageId;
-
-    @Column(name = "original_language_id", nullable = false)
-    private Integer originalLanguageId;
 
     @Column(name = "rental_duration", nullable = false)
     private Integer rentalDuration;
@@ -59,4 +53,31 @@ public class FilmEntity {
 
     @Column(name = "last_update", nullable = false)
     private LocalDateTime lastUpdate;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name="film_actor",
+            joinColumns=  @JoinColumn(name="film_id", referencedColumnName="film_id"),
+            inverseJoinColumns= @JoinColumn(name="actor_id", referencedColumnName="actor_id") )
+    private Set<ActorEntity> actorEntities = new HashSet<>();
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name="film_category",
+            joinColumns=  @JoinColumn(name="film_id", referencedColumnName="film_id"),
+            inverseJoinColumns= @JoinColumn(name="category_id", referencedColumnName="category_id") )
+    private Set<CategoryEntity> categoryEntities = new HashSet<>();
+
+    @OneToOne
+    @JoinColumn(name = "original_language_id")
+    public LanguageEntity originalLanguageEntity;
+
+    @OneToOne
+    @JoinColumn(name = "language_id")
+    public LanguageEntity languageEntity;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "film_id")
+    private Set<InventoryEntity> inventoryEntities = new HashSet<>();
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy="filmEntity")
+    public FilmTextEntity filmTextEntity;
 }

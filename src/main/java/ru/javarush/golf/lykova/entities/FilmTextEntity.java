@@ -20,4 +20,8 @@ public class FilmTextEntity {
     @Column(name = "description")
     private String description;
 
+    @OneToOne
+    @JoinColumn(name = "film_id")
+    public FilmEntity filmEntity;
+
 }

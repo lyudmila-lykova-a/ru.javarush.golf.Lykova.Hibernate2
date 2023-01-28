@@ -16,15 +16,6 @@ public class PaymentEntity {
     @Column(name = "payment_id")
     private Integer paymentId;
 
-    @Column(name = "customer_id", nullable = false)
-    private Integer customerId;
-
-    @Column(name = "staff_id", nullable = false)
-    private Integer staffId;
-
-    @Column(name = "rental_id", nullable = false)
-    private Integer rentalId;
-
     @Column(name = "amount", nullable = false)
     private Double amount;
 
@@ -33,4 +24,16 @@ public class PaymentEntity {
 
     @Column(name = "last_update")
     private LocalDateTime lastUpdate;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    public CustomerEntity customerEntity;
+
+    @ManyToOne
+    @JoinColumn(name = "staff_id")
+    public StaffEntity staffEntity;
+
+    @ManyToOne
+    @JoinColumn(name = "rental_id")
+    public RentalEntity rentalEntity;
 }

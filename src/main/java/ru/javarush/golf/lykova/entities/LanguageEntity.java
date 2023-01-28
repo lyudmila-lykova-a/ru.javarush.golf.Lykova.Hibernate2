@@ -21,4 +21,11 @@ public class LanguageEntity {
 
     @Column(name = "last_update", nullable = false)
     private LocalDateTime lastUpdate;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy="languageEntity")
+    public FilmEntity filmEntity;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy="originalLanguageEntity")
+    public FilmEntity originalLanguageFilmEntity;
+
 }
