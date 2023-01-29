@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -22,10 +24,13 @@ public class LanguageEntity {
     @Column(name = "last_update", nullable = false)
     private LocalDateTime lastUpdate;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy="languageEntity")
-    public FilmEntity filmEntity;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy="originalLanguageEntity")
-    public FilmEntity originalLanguageFilmEntity;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "language_id")
+    private Set<FilmEntity> filmEntities = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "original_language_id")
+    private Set<FilmEntity> originalLanguageFilmEntity = new HashSet<>();
 
 }

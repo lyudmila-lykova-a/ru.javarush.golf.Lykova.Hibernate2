@@ -66,11 +66,12 @@ public class FilmEntity {
             inverseJoinColumns= @JoinColumn(name="category_id", referencedColumnName="category_id") )
     private Set<CategoryEntity> categoryEntities = new HashSet<>();
 
-    @OneToOne
+
+    @ManyToOne
     @JoinColumn(name = "original_language_id")
     public LanguageEntity originalLanguageEntity;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "language_id")
     public LanguageEntity languageEntity;
 

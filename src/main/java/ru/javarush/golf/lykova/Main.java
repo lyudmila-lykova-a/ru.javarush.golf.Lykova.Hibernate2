@@ -14,8 +14,10 @@ public class Main {
     public static void main(String[] args) {
 
         SessionFactory sessionFactory = initDatabase();
-        List<?> allFilms = findAllFilms(sessionFactory);
-        System.out.println(allFilms);
+        TaskSix taskSix = new TaskSix(sessionFactory);
+        taskSix.perform();
+//        List<?> allFilms = findAllFilms(sessionFactory);
+//        System.out.println(allFilms);
 
     }
 
