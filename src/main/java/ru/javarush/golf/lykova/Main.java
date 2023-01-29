@@ -16,6 +16,9 @@ public class Main {
         SessionFactory sessionFactory = initDatabase();
         TaskSix taskSix = new TaskSix(sessionFactory);
         taskSix.perform();
+
+        TaskSeven taskSeven = new TaskSeven(sessionFactory);
+        taskSeven.perform();
 //        List<?> allFilms = findAllFilms(sessionFactory);
 //        System.out.println(allFilms);
 

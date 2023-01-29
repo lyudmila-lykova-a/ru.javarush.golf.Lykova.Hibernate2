@@ -24,7 +24,7 @@ public class CountryEntity {
     @Column(name = "last_update", nullable = false)
     private LocalDateTime lastUpdate;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "country_id")
-    private Set<CountryEntity> countryEntities = new HashSet<>();
+    private Set<CityEntity> cityEntities = new HashSet<>();
 }

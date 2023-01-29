@@ -25,11 +25,11 @@ public class LanguageEntity {
     private LocalDateTime lastUpdate;
 
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "language_id")
     private Set<FilmEntity> filmEntities = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "original_language_id")
     private Set<FilmEntity> originalLanguageFilmEntity = new HashSet<>();
 

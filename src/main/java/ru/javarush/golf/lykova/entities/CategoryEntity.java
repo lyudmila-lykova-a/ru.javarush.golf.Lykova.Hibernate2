@@ -24,7 +24,7 @@ public class CategoryEntity {
     @Column(name = "last_update", nullable = false)
     private LocalDateTime lastUpdate;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name="film_category",
             joinColumns=  @JoinColumn(name="category_id", referencedColumnName="category_id"),
             inverseJoinColumns= @JoinColumn(name="film_id", referencedColumnName="film_id") )

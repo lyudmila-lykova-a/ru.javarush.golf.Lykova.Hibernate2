@@ -37,7 +37,7 @@ public class CustomerEntity {
     @Column(name = "last_update", nullable = false)
     private LocalDateTime lastUpdate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
     public StoreEntity storeEntity;
 
@@ -45,11 +45,11 @@ public class CustomerEntity {
     @JoinColumn(name = "address_id")
     public AddressEntity addressEntity;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
     private Set<RentalEntity> rentalEntities = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
     private Set<PaymentEntity> paymentEntities = new HashSet<>();
 }

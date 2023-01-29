@@ -54,28 +54,28 @@ public class FilmEntity {
     @Column(name = "last_update", nullable = false)
     private LocalDateTime lastUpdate;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name="film_actor",
             joinColumns=  @JoinColumn(name="film_id", referencedColumnName="film_id"),
             inverseJoinColumns= @JoinColumn(name="actor_id", referencedColumnName="actor_id") )
     private Set<ActorEntity> actorEntities = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name="film_category",
             joinColumns=  @JoinColumn(name="film_id", referencedColumnName="film_id"),
             inverseJoinColumns= @JoinColumn(name="category_id", referencedColumnName="category_id") )
     private Set<CategoryEntity> categoryEntities = new HashSet<>();
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "original_language_id")
     public LanguageEntity originalLanguageEntity;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "language_id")
     public LanguageEntity languageEntity;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "film_id")
     private Set<InventoryEntity> inventoryEntities = new HashSet<>();
 

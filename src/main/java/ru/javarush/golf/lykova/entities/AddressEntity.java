@@ -35,11 +35,11 @@ public class AddressEntity {
     @Column(name = "last_update", nullable = false)
     private LocalDateTime lastUpdate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "city_id")
     public CityEntity cityEntity;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy="addressEntity")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="addressEntity")
     public StoreEntity storeEntity;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy="addressEntity")

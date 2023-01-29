@@ -48,15 +48,15 @@ public class StaffEntity {
     @JoinColumn(name = "address_id")
     public AddressEntity addressEntity;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "staff_id")
     private Set<PaymentEntity> paymentEntities = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "staff_id")
     private Set<RentalEntity> rentalEntities = new HashSet<>();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
     public StoreEntity storeEntity;
 
