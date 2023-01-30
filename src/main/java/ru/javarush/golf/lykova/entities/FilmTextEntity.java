@@ -10,7 +10,6 @@ import lombok.Setter;
 public class FilmTextEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "film_id")
     private Integer filmId;
 

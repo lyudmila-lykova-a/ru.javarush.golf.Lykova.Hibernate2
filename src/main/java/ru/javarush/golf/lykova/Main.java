@@ -1,27 +1,27 @@
 package ru.javarush.golf.lykova;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
-import org.hibernate.query.Query;
 import ru.javarush.golf.lykova.entities.*;
 
-import java.util.List;
 import java.util.Properties;
 
 public class Main {
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
         SessionFactory sessionFactory = initDatabase();
         TaskSix taskSix = new TaskSix(sessionFactory);
         taskSix.perform();
 
         TaskSeven taskSeven = new TaskSeven(sessionFactory);
         taskSeven.perform();
-//        List<?> allFilms = findAllFilms(sessionFactory);
-//        System.out.println(allFilms);
 
+        TaskEight taskEight = new TaskEight(sessionFactory);
+        taskEight.perform();
+
+        TaskNine taskNine = new TaskNine(sessionFactory);
+        taskNine.perform();
     }
 
     private static SessionFactory initDatabase() {
@@ -52,10 +52,4 @@ public class Main {
         return sessionFactory;
     }
 
-    public static List<?> findAllFilms(SessionFactory sessionFactory) {
-        try (Session session = sessionFactory.openSession()) {
-            Query<?> query = session.createQuery("from FilmEntity");
-            return query.list();
-        }
-    }
 }

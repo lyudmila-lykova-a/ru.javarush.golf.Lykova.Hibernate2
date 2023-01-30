@@ -4,7 +4,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import ru.javarush.golf.lykova.entities.CountryEntity;
 import ru.javarush.golf.lykova.entities.RentalEntity;
 
 import java.util.Optional;
@@ -24,6 +23,10 @@ public class RentalRepository {
             transaction.commit();
             return rentalEntity;
         }
+    }
+
+    public RentalEntity save(Session session, RentalEntity rentalEntity) {
+        return session.merge(rentalEntity);
     }
 
     public Optional<RentalEntity> findById(int rentalId) {

@@ -37,7 +37,7 @@ public class CustomerEntity {
     @Column(name = "last_update", nullable = false)
     private LocalDateTime lastUpdate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "store_id")
     public StoreEntity storeEntity;
 
